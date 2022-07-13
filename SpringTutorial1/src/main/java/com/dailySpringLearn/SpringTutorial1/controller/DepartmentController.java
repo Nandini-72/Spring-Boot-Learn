@@ -2,8 +2,9 @@ package com.dailySpringLearn.SpringTutorial1.controller;
 
 import com.dailySpringLearn.SpringTutorial1.entity.Department;
 import com.dailySpringLearn.SpringTutorial1.service.DepartmentService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -14,9 +15,11 @@ public class DepartmentController {
 
     @Autowired
     private DepartmentService departmentService;
+    private final Logger LOGGER = LoggerFactory.getLogger(DepartmentController.class);
 
     @PostMapping("/departments")
     public Department saveDepartment( @Valid @RequestBody Department department){
+        LOGGER.info("Inside save department of department controller");
         return departmentService.saveDepartment(department);
     }
 
